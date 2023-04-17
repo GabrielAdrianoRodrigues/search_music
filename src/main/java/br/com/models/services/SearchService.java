@@ -1,4 +1,4 @@
-package br.com.controllers;
+package br.com.models.services;
 
 public class SearchService {
 
