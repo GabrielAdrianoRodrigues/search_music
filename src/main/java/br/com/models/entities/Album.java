@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,11 +37,17 @@ public class Album {
     private Artista artista;
 
     @Column(name = "duracao")
-    private Long duracao;
+    private Double duracao;
 
     @Column(name = "ano")
     private Integer ano;
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Artista> feats;
+
+    @PrePersist
+    public void create() {
+        this.qtdMusicas = 0;
+        this.duracao = 0.0;
+    }
 }

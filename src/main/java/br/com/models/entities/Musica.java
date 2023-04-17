@@ -37,7 +37,7 @@ public class Musica {
     private Album album;
 
     @Column(name = "duracao")
-    private Long duracao;
+    private Double duracao;
 
     @Column(name = "estilo_musical")
     private String estiloMusical;
