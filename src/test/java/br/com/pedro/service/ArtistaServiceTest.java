@@ -31,7 +31,7 @@ public class ArtistaServiceTest {
 
     @Before
     public void init() {
-        artistaDefault =  new Artista(null, "Amarildo", "É muito gente fina", "Angolano", null)
+        artistaDefault =  new Artista(null, "Amarildo", "É muito gente fina", "Angolano", null);
     }
 
     @Test
