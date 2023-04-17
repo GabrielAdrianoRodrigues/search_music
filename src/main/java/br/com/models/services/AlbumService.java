@@ -1,5 +1,7 @@
 package br.com.models.services;
 
+import java.util.List;
+
 import br.com.models.daos.AlbumDAO;
 import br.com.models.entities.Album;
 import br.com.models.entities.Musica;
@@ -77,6 +79,10 @@ public class AlbumService {
         album.setDuracao(album.getDuracao() - musica.getDuracao());
         album.setQtdMusicas(album.getQtdMusicas() - 1);
         albumDAO.alterarAlbum(album);
+    }
+
+    public List<Album> buscarAlbunsByNome(String nome) {
+        return albumDAO.buscarAlbunsByNome(nome);
     }
     
 }

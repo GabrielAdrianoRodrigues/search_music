@@ -1,5 +1,7 @@
 package br.com.models.daos;
 
+import java.util.List;
+
 import br.com.models.entities.Album;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -33,5 +35,10 @@ public class AlbumDAO {
         em.getTransaction().begin();
         em.remove(album); 
         em.getTransaction().commit();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Album> buscarAlbunsByNome(String nome) {
+        return em.createNativeQuery("SELECT * FROM pd_albuns WHERE nome ILIKE :nome").setParameter("nome", "%nome%").getResultList();        
     }
 }

@@ -1,5 +1,7 @@
 package br.com.models.daos;
 
+import java.util.List;
+
 import br.com.models.entities.Artista;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -28,5 +30,10 @@ public class ArtistaDAO {
         em.getTransaction().begin();
         em.remove(artista);
         em.getTransaction().commit();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<Artista> buscarArtistasByNome(String nome) {
+        return em.createNativeQuery("SELECT * FROM pd_artistas WHERE nome ILIKE :nome").setParameter("nome", "%nome%").getResultList();        
     }
 }

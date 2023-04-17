@@ -1,5 +1,7 @@
 package br.com.models.services;
 
+import java.util.List;
+
 import br.com.models.daos.ArtistaDAO;
 import br.com.models.entities.Album;
 import br.com.models.entities.Artista;
@@ -72,6 +74,10 @@ public class ArtistaService {
         artista.getAlbuns().remove(album);
 
         artistaDAO.alterarArtista(artista);
+    }
+
+    public List<Artista> buscarArtistasByNome(String nome) {
+        return artistaDAO.buscarArtistasByNome(nome);
     }
     
 }

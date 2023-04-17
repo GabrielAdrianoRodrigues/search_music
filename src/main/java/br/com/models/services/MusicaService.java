@@ -23,6 +23,10 @@ public class MusicaService {
         return musicaDAO.buscarMusicas(ids);
     }
 
+    public List<Musica> buscarMusicasByNome(String nome) {
+        return musicaDAO.buscarMusicasByNome(nome);
+    }
+
     public void criarMusica(Musica musica) throws IllegalArgumentException, Exception {
         if (musica.getAlbum() == null || musica.getArtista() == null || musica.getNome() == null || musica.getNome().isEmpty() || musica.getDuracao() == null || musica.getDuracao() < 0 || musica.getEstiloMusical() == null || musica.getEstiloMusical().isEmpty()) {
             throw new IllegalAccessException();

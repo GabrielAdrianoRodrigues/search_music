@@ -19,6 +19,11 @@ public class MusicaDAO {
         return em.createNativeQuery("SELECT * FROM pd_musicas WHERE id IN :ids").setParameter("ids", ids).getResultList();        
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Musica> buscarMusicasByNome(String nome) {
+        return em.createNativeQuery("SELECT * FROM pd_musicas WHERE nome ILIKE :nome").setParameter("nome", "%nome%").getResultList();        
+    }
+
     public void criarAlbum(Musica musica) {
         em.getTransaction().begin();
         em.persist(musica);
