@@ -2,6 +2,7 @@ package br.com.models.entities;
 
 import java.util.List;
 
+import br.com.models.dtos.MusicaDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -41,4 +42,14 @@ public class Musica {
 
     @Column(name = "estilo_musical")
     private String estiloMusical;
+
+    public Musica(MusicaDTO dto) {
+        this.id = dto.id();
+        this.nome = dto.nome();
+        this.artista = dto.artista();
+        this.feats = dto.feats();
+        this.album = dto.album();
+        this.duracao = dto.duracao();
+        this.estiloMusical = dto.estiloMusical();
+    }
 }

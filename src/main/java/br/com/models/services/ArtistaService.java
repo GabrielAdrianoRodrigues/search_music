@@ -1,8 +1,10 @@
 package br.com.models.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.models.daos.ArtistaDAO;
+import br.com.models.dtos.ArtistaDTO;
 import br.com.models.entities.Album;
 import br.com.models.entities.Artista;
 import jakarta.inject.Inject;
@@ -76,8 +78,8 @@ public class ArtistaService {
         artistaDAO.alterarArtista(artista);
     }
 
-    public List<Artista> buscarArtistasByNome(String nome) {
-        return artistaDAO.buscarArtistasByNome(nome);
+    public List<ArtistaDTO> buscarArtistasByNome(String nome) {
+        return artistaDAO.buscarArtistasByNome(nome).stream().map(ArtistaDTO::new).collect(Collectors.toList());
     }
     
 }

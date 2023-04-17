@@ -1,8 +1,10 @@
 package br.com.models.services;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.models.daos.MusicaDAO;
+import br.com.models.dtos.MusicaDTO;
 import br.com.models.entities.Musica;
 import jakarta.inject.Inject;
 import jakarta.persistence.NoResultException;
@@ -15,16 +17,16 @@ public class MusicaService {
     @Inject
     private AlbumService albumService;
 
-    public Musica buscarMusica(Long id) {
-        return musicaDAO.buscarMusica(id);
+    public MusicaDTO buscarMusica(Long id) {
+        return new MusicaDTO(musicaDAO.buscarMusica(id));
     }
 
-    public List<Musica> buscarMusicas(List<Long> ids) {
-        return musicaDAO.buscarMusicas(ids);
+    public List<MusicaDTO> buscarMusicas(List<Long> ids) {
+        return musicaDAO.buscarMusicas(ids).stream().map(MusicaDTO::new).collect(Collectors.toList());
     }
 
-    public List<Musica> buscarMusicasByNome(String nome) {
-        return musicaDAO.buscarMusicasByNome(nome);
+    public List<MusicaDTO> buscarMusicasByNome(String nome) {
+        return musicaDAO.buscarMusicasByNome(nome).stream().map(MusicaDTO::new).collect(Collectors.toList());
     }
 
     public void criarMusica(Musica musica) throws IllegalArgumentException, Exception {

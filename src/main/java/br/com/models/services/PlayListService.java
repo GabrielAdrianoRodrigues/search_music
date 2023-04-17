@@ -3,6 +3,7 @@ package br.com.models.services;
 import java.util.List;
 
 import br.com.models.daos.PlayListDAO;
+import br.com.models.dtos.MusicaDTO;
 import br.com.models.entities.Musica;
 import br.com.models.entities.PlayList;
 import jakarta.inject.Inject;
@@ -16,8 +17,8 @@ public class PlayListService {
     private MusicaService musicaService;
 
     public void adicionarMusicaPlayList(Long musicaId, Long playlistId) throws NoResultException, Exception {
-        Musica musica = musicaService.buscarMusica(musicaId);
-        if (musica == null) {
+        MusicaDTO musicaDTO = musicaService.buscarMusica(musicaId);
+        if (musicaDTO == null) {
             throw new NoResultException();
         }
 
@@ -26,14 +27,14 @@ public class PlayListService {
             throw new NoResultException();
         }
 
-        playList.getMusicas().add(musica);
+        playList.getMusicas().add(new Musica(musicaDTO));
 
         playListDAO.alterarPlayList(playList);
     }
 
     public void removeMusicasPlayList(List<Long> musicasIds, Long playlistId) throws NoResultException, Exception {
-        List<Musica> musicas = musicaService.buscarMusicas(musicasIds);
-        if (musicas.isEmpty()) {
+        List<MusicaDTO> musicasDTO = musicaService.buscarMusicas(musicasIds);
+        if (musicasDTO.isEmpty()) {
             throw new NoResultException();
         }
 
@@ -42,7 +43,7 @@ public class PlayListService {
             throw new NoResultException();
         }
 
-        musicas.forEach(x -> playList.getMusicas().remove(x));
+        musicasDTO.forEach(x -> playList.getMusicas().remove(new Musica(x)));
 
         playListDAO.alterarPlayList(playList);
     }
