@@ -15,7 +15,7 @@ public class SearchController {
         try {
             return searchService.realizarBusca(nome);
         } catch (IllegalArgumentException ex0) {
-            System.out.println("parametro de busca nulo ou inválido");
+            System.out.println("parametro de busca nulo ou invalido");
         } catch (Exception ex1) {
             ex1.printStackTrace();
         }

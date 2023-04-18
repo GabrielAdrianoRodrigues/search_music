@@ -4,12 +4,12 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,10 +36,7 @@ public class PlayList {
     @Column(name = "descricao")
     private String descricao;
 
-    @JoinTable(name="playlist_musica",
-			   joinColumns={ @JoinColumn(name = "id_playlist") },
-			   inverseJoinColumns={ @JoinColumn(name="id_musica") }
-    )					
+    @ManyToMany(fetch = FetchType.LAZY)		
     private List<Musica> musicas;
 
 }
